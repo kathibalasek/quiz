@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grief-Ready Advisor Assessment | Kathi Balasek</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy: #7C1F2E;
+    --burgundy-dark: #5a1621;
+    --burgundy-light: #9d3444;
+    --warm-orange: #D4724A;
+    --gold: #C4975A;
+    --olive: #8A8A3C;
+    --cream: #FAF7F2;
+    --warm-white: #FFFDF9;
+    --text-dark: #1C1C1C;
+    --text-mid: #4A4A4A;
+    --text-light: #7A7A7A;
+    --border: #E8E0D5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--burgundy);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .header-tag {
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* SCREENS */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* INTRO SCREEN */
+  .intro-hero {
+    background: var(--burgundy);
+    padding: 70px 40px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .intro-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .intro-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: rgba(212,114,74,0.15);
+  }
+  .intro-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--warm-orange);
+    margin-bottom: 20px;
+  }
+  .intro-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+  .intro-title em {
+    font-style: italic;
+    color: #E8C4A0;
+  }
+  .intro-subtitle {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 50px 40px;
+  }
+  .intro-quote {
+    border-left: 3px solid var(--warm-orange);
+    padding: 16px 24px;
+    margin-bottom: 40px;
+    background: white;
+    border-radius: 0 8px 8px 0;
+  }
+  .intro-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--burgundy);
+    line-height: 1.6;
+  }
+  .intro-what {
+    margin-bottom: 40px;
+  }
+  .intro-what h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--burgundy);
+    margin-bottom: 16px;
+  }
+  .intro-what ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .intro-what li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+  .intro-what li::before {
+    content: '→';
+    color: var(--warm-orange);
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .intro-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    margin-bottom: 36px;
+  }
+  .start-btn {
+    display: inline-block;
+    background: var(--burgundy);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 16px 48px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .start-btn:hover {
+    background: var(--burgundy-dark);
+    transform: translateY(-1px);
+  }
+
+  /* QUIZ SCREEN */
+  .quiz-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 40px;
+  }
+
+  .progress-bar-wrap {
+    margin-bottom: 40px;
+  }
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .progress-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+  }
+  .progress-count {
+    font-size: 0.85rem;
+    color: var(--burgundy);
+    font-weight: 500;
+  }
+  .progress-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--warm-orange);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .scenario-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+  }
+  .scenario-tag {
+    background: var(--burgundy);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 8px 20px;
+  }
+  .scenario-body {
+    padding: 28px 28px 24px;
+  }
+  .scenario-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--warm-orange);
+    margin-bottom: 10px;
+  }
+  .scenario-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--text-dark);
+    font-style: italic;
+  }
+
+  .question-section {
+    margin-bottom: 8px;
+  }
+  .question-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--warm-white);
+  }
+  .option:hover {
+    border-color: var(--warm-orange);
+    background: #FDF6F0;
+  }
+  .option.selected {
+    border-color: var(--burgundy);
+    background: #F9F0F2;
+  }
+  .option-letter {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    flex-shrink: 0;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+  .option.selected .option-letter {
+    background: var(--burgundy);
+    border-color: var(--burgundy);
+    color: white;
+  }
+  .option-text {
+    font-size: 0.93rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+  }
+  .nav-back {
+    background: none;
+    border: 1.5px solid var(--border);
+    color: var(--text-mid);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 12px 28px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav-back:hover { border-color: var(--burgundy); color: var(--burgundy); }
+  .nav-back:disabled { opacity: 0.3; cursor: default; }
+  .nav-next {
+    background: var(--burgundy);
+    border: none;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 13px 36px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .nav-next.enabled {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .nav-next.enabled:hover {
+    background: var(--burgundy-dark);
+    transform: translateY(-1px);
+  }
+
+  /* EMAIL CAPTURE */
+  .email-screen {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .email-icon {
+    width: 64px;
+    height: 64px;
+    background: var(--burgundy);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 1.6rem;
+  }
+  .email-screen h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--burgundy);
+    margin-bottom: 14px;
+    line-height: 1.3;
+  }
+  .email-screen p {
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+  .form-row {
+    display: flex;
+    gap: 12px;
+  }
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+  .form-field label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-mid);
+    letter-spacing: 0.05em;
+  }
+  .form-field input {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background: white;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-field input:focus { border-color: var(--burgundy); }
+  .submit-btn {
+    background: var(--burgundy);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 6px;
+  }
+  .submit-btn:hover { background: var(--burgundy-dark); }
+  .privacy-note {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* RESULTS */
+  .results-hero {
+    padding: 56px 40px 48px;
+    text-align: center;
+    position: relative;
+  }
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .results-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .results-tagline {
+    font-size: 1.05rem;
+    max-width: 540px;
+    margin: 0 auto 16px;
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .results-body {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 40px 60px;
+  }
+
+  .gap-section {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .gap-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--burgundy);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gap-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .gap-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.93rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+  .gap-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--warm-orange);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+  .next-steps {
+    background: var(--burgundy);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+    color: white;
+  }
+  .next-steps h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: white;
+  }
+  .resource-card {
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .resource-card:last-child { margin-bottom: 0; }
+  .resource-priority {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-orange);
+    margin-bottom: 6px;
+  }
+  .resource-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .resource-desc {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.5;
+  }
+
+  .closing-note {
+    background: #FDF6F0;
+    border: 1px solid #EDD5C0;
+    border-radius: 12px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  .closing-note p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--burgundy);
+    line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .closing-note .attribution {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-style: normal;
+  }
+
+  .retake-btn {
+    display: inline-block;
+    background: none;
+    border: 1.5px solid var(--burgundy);
+    color: var(--burgundy);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    padding: 11px 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 24px;
+    transition: all 0.2s;
+  }
+  .retake-btn:hover { background: var(--burgundy); color: white; }
+
+  /* LEVEL COLORS */
+  .level-1 .level-badge { background: #FEF3E8; color: #C4753A; border: 1px solid #F0C89A; }
+  .level-1 .results-name { color: #C4753A; }
+  .level-1 .results-tagline { color: var(--text-mid); }
+
+  .level-2 .level-badge { background: #FDF0E8; color: var(--warm-orange); border: 1px solid #ECC9A8; }
+  .level-2 .results-name { color: var(--warm-orange); }
+  .level-2 .results-tagline { color: var(--text-mid); }
+
+  .level-3 .level-badge { background: #F5F0E0; color: var(--olive); border: 1px solid #D4CC90; }
+  .level-3 .results-name { color: var(--olive); }
+  .level-3 .results-tagline { color: var(--text-mid); }
+
+  .level-4 .level-badge { background: #F5EEF0; color: var(--burgundy); border: 1px solid #D4A0AC; }
+  .level-4 .results-name { color: var(--burgundy); }
+  .level-4 .results-tagline { color: var(--text-mid); }
+
+  .level-4 .results-hero { background: linear-gradient(160deg, #FAF7F2 0%, #F5EEF0 100%); }
+
+  @media (max-width: 600px) {
+    .quiz-container, .results-body, .email-screen { padding: 32px 20px; }
+    .intro-hero { padding: 50px 24px 60px; }
+    .intro-body { padding: 36px 24px; }
+    .form-row { flex-direction: column; }
+    .header { padding: 16px 20px; }
+  }
+
+  .optin-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #F9F0F2;
+    border: 1.5px solid #D4A0AC;
+    border-radius: 6px;
+    margin-top: 4px;
+  }
+  .optin-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: var(--burgundy);
+    cursor: pointer;
+  }
+  .optin-label {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.55;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="header-brand">Kathi Balasek</span>
+  <span class="header-tag">Grief-Ready Professional</span>
+</div>
+
+<!-- INTRO SCREEN -->
+<div id="screen-intro" class="screen active">
+  <div class="intro-hero">
+    <div class="intro-eyebrow">Pre-Training Assessment</div>
+    <h1 class="intro-title">Are You <em>Grief-Ready</em>?</h1>
+    <p class="intro-subtitle">Seven real-world scenarios. No right answers — only honest ones. Discover exactly where you stand and what to do next.</p>
+  </div>
+  <div class="intro-body">
+    <div class="intro-quote">
+      <p>"This is not a caring problem. It is a training problem. And communication is currency."</p>
+    </div>
+    <div class="intro-what">
+      <h3>What you'll discover</h3>
+      <ul>
+        <li>Where your instincts are strong — and where they may be costing you client trust</li>
+        <li>Which grief myths are quietly shaping your language</li>
+        <li>Your personalized readiness level across the four stages of grief-ready communication</li>
+        <li>Exactly which resources will close your specific gaps</li>
+      </ul>
+    </div>
+    <div class="intro-time">⏱ Takes about 5 minutes</div><br>
+    <button class="start-btn" onclick="startQuiz()">Begin the Assessment →</button>
+  </div>
+</div>
+
+<!-- QUIZ SCREEN -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-container">
+    <div class="progress-bar-wrap">
+      <div class="progress-meta">
+        <span class="progress-label">Your Assessment</span>
+        <span class="progress-count" id="progress-count">1 of 7</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width: 14%"></div>
+      </div>
+    </div>
+    <div id="question-area"></div>
+    <div class="quiz-nav">
+      <button class="nav-back" id="btn-back" onclick="prevQuestion()" disabled>← Back</button>
+      <button class="nav-next" id="btn-next" onclick="nextQuestion()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- EMAIL SCREEN -->
+<div id="screen-email" class="screen">
+  <div class="email-screen">
+    <div class="email-icon">✉</div>
+    <h2>Your results are ready.</h2>
+    <p>Enter your name and email to receive your personalized Grief-Ready Assessment — including your readiness level, gap summary, and recommended next steps.</p>
+    <form class="email-form" onsubmit="submitEmail(event)">
+      <div class="form-row">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" id="input-first" placeholder="First name" required>
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" id="input-last" placeholder="Last name" required>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>Email Address</label>
+        <input type="email" id="input-email" placeholder="your@email.com" required>
+      </div>
+      <div class="form-field">
+        <label>Firm Name (optional)</label>
+        <input type="text" id="input-firm" placeholder="Your firm or company">
+      </div>
+      <div class="optin-row">
+        <input type="checkbox" id="input-optin" required>
+        <label for="input-optin" class="optin-label">Yes, I'd like to receive grief-ready communication tips and resources from Kathi Balasek.</label>
+      </div>
+      <button type="submit" class="submit-btn">See My Results →</button>
+      <p class="privacy-note">Your information is private and will never be shared.</p>
+    </form>
+  </div>
+</div>
+
+<!-- RESULTS SCREEN -->
+<div id="screen-results" class="screen">
+  <div id="results-content"></div>
+</div>
+
+<script>
+const questions = [
+  {
+    tag: "Widowhood",
+    scenario: "A longtime client calls unexpectedly. After a brief silence she says, \"My husband passed away three days ago.\" You have met him twice at annual reviews. You are not sure you remember his name.",
+    question: "What do you do in the next thirty seconds of that call?",
+    options: [
+      { letter: "A", text: "Express sympathy and immediately let her know you will handle everything on the financial side so she doesn't have to worry.", score: 1 },
+      { letter: "B", text: "Say you are so sorry, ask if she has family around her, and let her know there is nothing that needs her attention from you right now.", score: 2 },
+      { letter: "C", text: "Tell her you are deeply saddened. Ask his name if you are not certain — because he deserves to be named. Share the one thing you remember about him, even if it is small. Then tell her you are here and there is no rush for anything.", score: 4 },
+      { letter: "D", text: "Express condolences and ask if she would like to schedule a time to meet and review the accounts.", score: 1 }
+    ]
+  },
+  {
+    tag: "Health Diagnosis",
+    scenario: "A client couple comes in for their annual review. Before you can open the agenda, the husband says quietly, \"I was diagnosed with stage three cancer last month. We haven't told many people.\"",
+    question: "How do you respond to what he just shared?",
+    options: [
+      { letter: "A", text: "Thank him for sharing and acknowledge this changes the nature of today's conversation — then proceed with a modified agenda focused on estate planning.", score: 2 },
+      { letter: "B", text: "Close the agenda. Tell him you are deeply saddened and that this news matters to you far beyond the financial side. Ask if they would rather just talk today — or simply sit for a moment before deciding what this meeting looks like.", score: 4 },
+      { letter: "C", text: "Say you are so sorry and that everything is going to be okay — then suggest you focus on getting their affairs in order while there is time.", score: 1 },
+      { letter: "D", text: "Acknowledge the news warmly, tell them you are here for the human side as much as the financial side, and ask what feels most important to them today.", score: 3 }
+    ]
+  },
+  {
+    tag: "Dementia & Caregiving",
+    scenario: "A client mentions his wife was diagnosed with early-stage dementia six months ago. He has been managing her care alone. He has not brought it up before today.",
+    question: "Your client is experiencing anticipatory grief — grief before a death has occurred. How do you respond?",
+    options: [
+      { letter: "A", text: "Acknowledge how hard caregiving is and suggest updating their estate documents given the diagnosis.", score: 2 },
+      { letter: "B", text: "Thank him for trusting you with this. Ask her name if you do not know it. Tell him you have been thinking about their family — and ask how he is really doing, not just financially but personally.", score: 4 },
+      { letter: "C", text: "Express concern and mention that many of your clients go through similar situations, so you are well equipped to help navigate this.", score: 1 },
+      { letter: "D", text: "Ask what kind of support feels most helpful right now — practical financial planning or just having someone to talk things through with.", score: 3 }
+    ]
+  },
+  {
+    tag: "Divorce",
+    scenario: "A couple you have worked with for eight years calls to let you know they are divorcing. They are calling together, on speaker phone. The conversation is civil but heavy.",
+    question: "This is a grief conversation — not only a financial one. How do you treat it?",
+    options: [
+      { letter: "A", text: "Remain neutral, thank them for letting you know, and explain that you will need guidance on how to proceed with the accounts.", score: 1 },
+      { letter: "B", text: "Acknowledge that this is a significant transition for both of them. Express that you care about each of them individually and will be present for whatever they need going forward.", score: 3 },
+      { letter: "C", text: "Pause before saying anything practical. Tell them that divorce is a real loss — not just a legal one — and that you are here for each of them through this transition, at whatever pace they need. No financial agenda today unless they want one.", score: 4 },
+      { letter: "D", text: "Keep the call focused and professional. Suggest a follow-up meeting to divide the accounts and create separate financial plans.", score: 1 }
+    ]
+  },
+  {
+    tag: "Infertility & Miscarriage",
+    scenario: "A younger client couple shares that they have experienced two miscarriages and are navigating infertility treatment. They mention it while explaining why they have been less engaged with financial planning.",
+    question: "This loss is often disenfranchised — not recognized as real grief. How do you respond?",
+    options: [
+      { letter: "A", text: "Tell them not to worry about the financial side and that their health and wellbeing come first right now.", score: 2 },
+      { letter: "B", text: "Acknowledge that what they are going through is a real and significant loss — not just medically but emotionally — and that you are grateful they trusted you with it. Tell them nothing on your end requires their attention right now.", score: 4 },
+      { letter: "C", text: "Express sympathy and mention that you know several couples who went through fertility challenges and came out the other side — it will work out.", score: 1 },
+      { letter: "D", text: "Acknowledge the weight of what they shared, ask if there is anything they need from you, and let them lead the conversation from there.", score: 3 }
+    ]
+  },
+  {
+    tag: "Retirement Transition",
+    scenario: "A longtime client retired six months ago after a 35-year career. At today's meeting he seems distracted and flat — unlike himself. When you ask how retirement is going, he says, \"Honestly? I don't know who I am anymore.\"",
+    question: "Retirement carries secondary losses — identity, purpose, social connection, structure. How do you respond to what he just said?",
+    options: [
+      { letter: "A", text: "Tell him that feeling is completely normal and that most people feel that way at first — it will get better.", score: 1 },
+      { letter: "B", text: "Sit with what he said for a moment before responding. Tell him that what he is describing makes complete sense — that retirement is not just a financial transition, it is an identity one. Ask him what he misses most.", score: 4 },
+      { letter: "C", text: "Suggest he look into volunteer work or part-time consulting to stay engaged and give him some structure.", score: 1 },
+      { letter: "D", text: "Acknowledge that retirement can bring unexpected emotions and ask how you can support him through this season — not just financially.", score: 3 }
+    ]
+  },
+  {
+    tag: "New Widowed Client",
+    scenario: "A new client calls, referred by a colleague. She introduces herself and says, \"I was widowed about a year ago. I need to finally get my finances in order but I have been avoiding it.\"",
+    question: "She is navigating grief fog, secondary loss, and the financial weight of widowhood. What is your first move?",
+    options: [
+      { letter: "A", text: "Thank her for calling, express that you understand this has been a difficult year, and suggest scheduling an initial meeting to review her accounts.", score: 2 },
+      { letter: "B", text: "Acknowledge that picking up the phone took courage. Tell her there is no rush — you will move at her pace entirely. Ask one question: what feels most important to her right now.", score: 4 },
+      { letter: "C", text: "Express that you work with a number of widowed clients and know exactly what she is going through — you are well positioned to help her get everything sorted.", score: 1 },
+      { letter: "D", text: "Tell her you are glad she reached out, that the avoidance she described is completely normal, and that your first conversation will have no financial agenda — just getting to know her and what she needs.", score: 3 }
+    ]
+  }
+];
+
+let currentQ = 0;
+let answers = [];
+let userName = '';
+
+function startQuiz() {
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  const selected = answers[currentQ];
+  const total = questions.length;
+
+  document.getElementById('progress-count').textContent = `${currentQ + 1} of ${total}`;
+  document.getElementById('progress-fill').style.width = `${((currentQ + 1) / total) * 100}%`;
+
+  const nextBtn = document.getElementById('btn-next');
+  const backBtn = document.getElementById('btn-back');
+
+  nextBtn.textContent = currentQ === total - 1 ? 'See My Results →' : 'Next →';
+  nextBtn.classList.toggle('enabled', selected !== undefined);
+  backBtn.disabled = currentQ === 0;
+
+  document.getElementById('question-area').innerHTML = `
+    <div class="scenario-card">
+      <div class="scenario-tag">${q.tag}</div>
+      <div class="scenario-body">
+        <div class="scenario-label">The Scenario</div>
+        <p class="scenario-text">${q.scenario}</p>
+      </div>
+    </div>
+    <div class="question-section">
+      <p class="question-text">${q.question}</p>
+      <div class="options">
+        ${q.options.map((opt, i) => `
+          <div class="option ${selected === i ? 'selected' : ''}" onclick="selectOption(${i})">
+            <div class="option-letter">${opt.letter}</div>
+            <div class="option-text">${opt.text}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function selectOption(index) {
+  answers[currentQ] = index;
+  document.querySelectorAll('.option').forEach((el, i) => {
+    el.classList.toggle('selected', i === index);
+  });
+  document.getElementById('btn-next').classList.add('enabled');
+}
+
+function nextQuestion() {
+  if (answers[currentQ] === undefined) return;
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  } else {
+    showScreen('screen-email');
+    window.scrollTo(0, 0);
+  }
+}
+
+function prevQuestion() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  }
+}
+
+function submitEmail(e) {
+  e.preventDefault();
+  const first = document.getElementById('input-first').value;
+  userName = first;
+  showScreen('screen-results');
+  buildResults();
+  window.scrollTo(0, 0);
+}
+
+function calcScore() {
+  return answers.reduce((sum, answerIndex, qIndex) => {
+    return sum + questions[qIndex].options[answerIndex].score;
+  }, 0);
+}
+
+function getLevel(score) {
+  const max = questions.length * 4;
+  const pct = score / max;
+  if (pct <= 0.40) return 1;
+  if (pct <= 0.60) return 2;
+  if (pct <= 0.80) return 3;
+  return 4;
+}
+
+const levelData = {
+  1: {
+    badge: "Level 1",
+    name: "Caring but Unprepared",
+    tagline: "Your instinct to care is real — and it matters. But right now, your language is defaulting to comfort phrases and financial pivots when your clients need something deeper. The gap is not in your heart. It is in your training.",
+    gaps: [
+      "You are likely pivoting to financial tasks before the emotional moment has been acknowledged — which signals to the client that the money matters more than they do.",
+      "Your condolence language may be defaulting to phrases like 'everything will be okay' or 'you're so strong' — words that unintentionally minimize what the client is carrying.",
+      "You may not yet be using the client's name or naming the specific person they lost, which is one of the most powerful things a grief-ready advisor can do.",
+      "Losses beyond death — divorce, dementia, retirement, infertility — may not yet be registering as grief conversations that require the same presence and care."
+    ],
+    resources: [
+      { priority: "Start here", name: "Empathy Etiquette: What to Say Starter Guide", desc: "The foundational language guide — what to say, what never to say, and 100 condolence card examples you can use as spoken language today." },
+      { priority: "Next step", name: "Grief-Ready Advisor Webinar", desc: "A live or recorded session covering the four core frameworks — PREP, AND, Disenfranchised Grief, and the Empathy Spectrum — with your team." },
+      { priority: "When you're ready", name: "The Series of Firsts Script Library", desc: "Every scenario, fully scripted. The first phone call, the first card, the first office visit — with exact language for seven loss types." }
+    ]
+  },
+  2: {
+    badge: "Level 2",
+    name: "Grief Aware",
+    tagline: "You know that grief conversations matter and you are trying to show up for them. Your instincts are moving in the right direction. What you need now is language — specific, practiced, and ready before the moment arrives.",
+    gaps: [
+      "You are acknowledging loss — but your language may be staying surface-level, which can feel like sympathy (I feel for you) rather than empathy (I feel with you).",
+      "You may be asking permission to move forward but still rushing toward the financial agenda faster than the client is ready to follow.",
+      "The AND framework — Acknowledge, Name, Distinction — is likely missing from your condolence conversations. You are saying sorry without completing the thought.",
+      "Non-death losses may still feel different to you than death-related ones, which means some of your grieving clients are not receiving grief-ready communication at all."
+    ],
+    resources: [
+      { priority: "Start here", name: "Empathy Etiquette: What to Say Starter Guide", desc: "Sharpen your language with 100 real examples organized by loss type — all written in the AND framework and usable as spoken dialogue." },
+      { priority: "Most impactful", name: "The Series of Firsts Script Library", desc: "The full communication protocol for five touchpoints after a loss — with scripts for every scenario you named in this assessment." },
+      { priority: "For your team", name: "Grief-Ready Advisor Webinar", desc: "Build the foundation across your entire practice. CE-eligible training that creates a shared language for every advisor in the room." }
+    ]
+  },
+  3: {
+    badge: "Level 3",
+    name: "Grief Informed",
+    tagline: "You understand how grief works and your communication reflects that understanding. You are meeting clients with presence, following their pace, and recognizing loss beyond death. Now it is time to close the gaps and build mastery.",
+    gaps: [
+      "Your responses are empathetic but may lack the specific language tools — the AND framework, the Distinction step, the exact words — that turn a good response into an unforgettable one.",
+      "You are likely strong on widowhood and death-related loss, but your responses to non-death losses like retirement, infertility, and dementia caregiving may not yet carry the same depth.",
+      "The first 48 hours after a loss — the first call, the first card, the first service contact — may not yet follow a consistent, intentional protocol.",
+      "You are grief-informed. The next level is grief-ready — having the language practiced and available before the moment demands it."
+    ],
+    resources: [
+      { priority: "Your next level", name: "The Series of Firsts Script Library", desc: "The complete communication protocol — five touchpoints, seven loss types, exact language. This is what closes the gap between grief-informed and grief-ready." },
+      { priority: "Deepen the foundation", name: "PACE Course — Grief-Ready Communication", desc: "Kathi's signature course covering the full curriculum: preparation, presence, language, and follow-through across every loss type." },
+      { priority: "For your firm", name: "Team Webinar Package", desc: "Bring your whole team to grief-ready. A series of live sessions that build a shared language, shared protocols, and shared standards of care." }
+    ]
+  },
+  4: {
+    badge: "Level 4",
+    name: "Grief Ready",
+    tagline: "You are not just communicating well in grief conversations — you are leading them. You understand that empathy is a professional skill, that grief is broader than death, and that how you show up in these moments is your greatest differentiator. You are not here to check a box. You are here because you know what is possible.",
+    gaps: [
+      "You are already grief-ready — and you know that the language can always go deeper. The Distinction step, the specific memory, the personal detail that makes a client feel truly seen, is where mastery lives.",
+      "Your opportunity is not to learn more frameworks. It is to build a practice-wide culture of grief-ready communication — consistent protocols, consistent language, consistent follow-through across every advisor and every touchpoint.",
+      "The advisors around you — in your firm, in your industry — are not where you are. That gap is your competitive advantage. And it is one that AI, automation, and generic empathy training cannot close.",
+      "You are ready for the deepest curriculum — the one that moves from communication skills to industry leadership."
+    ],
+    resources: [
+      { priority: "Your next level", name: "PACE Course — Grief-Ready Communication", desc: "Kathi's signature course. The full curriculum, the deepest language library, and the framework that moves you from grief-ready to grief-leading." },
+      { priority: "Expand your impact", name: "Firm Engagement Package", desc: "A 90-day partnership that brings grief-ready communication standards across your entire practice — curriculum, coaching, and culture change." },
+      { priority: "Go further", name: "Work Directly with Kathi", desc: "For advisors who want to become the grief-ready standard in their market. Speaking, consulting, and bespoke training for your team or conference.", link: "https://kathibalasek.com" }
+    ]
+  }
+};
+
+function buildResults() {
+  const score = calcScore();
+  const level = getLevel(score);
+  const data = levelData[level];
+
+  const html = `
+    <div class="level-${level}">
+      <div class="results-hero">
+        <div class="level-badge">${data.badge}</div>
+        <h2 class="results-name">${userName ? userName + ', you are ' : 'You are '}<br>${data.name}</h2>
+        <p class="results-tagline">${data.tagline}</p>
+      </div>
+      <div class="results-body">
+        <div class="gap-section">
+          <h3>📋 Your Gap Summary</h3>
+          <ul class="gap-list">
+            ${data.gaps.map(g => `<li><div class="gap-dot"></div><span>${g}</span></li>`).join('')}
+          </ul>
+        </div>
+        <div class="next-steps">
+          <h3>Where to Go From Here</h3>
+          ${data.resources.map(r => `
+            <div class="resource-card">
+              <div class="resource-priority">${r.priority}</div>
+              <div class="resource-name">${r.name}</div>
+              <div class="resource-desc">${r.desc}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="closing-note">
+          <p>"Love and grief live in the same vein. When you understand that, everything about how you show up for your clients changes."</p>
+          <span class="attribution">— Kathi Balasek | <a href="https://kathibalasek.com" target="_blank" style="color: var(--warm-orange); text-decoration: none;">KathiBalasek.com</a></span>
+        </div>
+        <div style="text-align:center; display:flex; flex-direction:column; align-items:center; gap:14px;">
+          <a href="https://kathibalasek.com" target="_blank" style="display:inline-block; background:var(--warm-orange); color:white; font-family:DM Sans,sans-serif; font-size:0.95rem; font-weight:500; padding:14px 40px; border-radius:4px; text-decoration:none; transition:background 0.2s;" onmouseover="this.style.background='#b85e39'" onmouseout="this.style.background='var(--warm-orange)'">Learn More at KathiBalasek.com →</a>
+          <button class="retake-btn" onclick="retake()">Retake the Assessment</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('results-content').innerHTML = html;
+}
+
+function retake() {
+  currentQ = 0;
+  answers = [];
+  userName = '';
+  showScreen('screen-intro');
+  window.scrollTo(0, 0);
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
